@@ -1,9 +1,61 @@
 <!-- inherit from base.html-->
 {% extends "inventory_app/base_template.html" %}
 
+{% load static %}
+
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-<h1>Inventory Tracker</h1>
+<body style="background-color: lightgray;">
+<h1 class="text-center">Inventory Tracker</h1>
+
+<br>
+
+<div class="container mx-auto justify-content-center bg-secondary bg-opacity-25" style="padding: 25px; margin: 50px;">
+    <h3 class="text-center">Keep track of valuable items in your home</h3>
+    <div class="row mx-auto items-align-center">
+        <div class="col-md-2 mx-auto"></div>
+        <div class="col-md-2 offset-1">
+            <img src="{% static 'images/jewelry.png' %}" class=" rounded img-fluid" style="max-width: 70%; height: auto;">
+        </div>
+        <div class="col-md-2 mx-auto">
+            <img src="{% static 'images/grand-piano.png' %}" class="img-fluid" style="max-width: 70%; height: auto;">
+        </div>
+        <div class="col-md-2 mx-auto">
+            <img src="{% static 'images/sofa.png' %}" class="img-fluid" style="max-width: 70%; height: auto;">
+        </div>
+        <div class="col-md-2 mx-auto"></div>
+    </div>
+    <br>
+    <br>
+    <h3 class="text-center">Keep a detailed record of your valuables in case of a disaster</h3>
+    <div class="row mx-auto">
+        <div class="col-md-2 mx-auto"></div>
+        <div class="col-md-2 offset-1">
+            <img src="{% static 'images/fire.png' %}" class="img-fluid" style="max-width: 85%; height: auto;">
+        </div>
+        <div class="col-md-2 mx-auto">
+            <img src="{% static 'images/flooded-house.png' %}" class="img-fluid" style="max-width: 85%; height: auto;">
+        </div>
+        <div class="col-md-2 mx-auto"></div>
+    </div>
+</div>
+</body>
+
+<!--
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col-lg-3">
+            <img src="{% static 'images/jewelry.png' %}" class="img-fluid" style="transform: scale(0.4);">
+        </div>
+        <div class="col-lg-3">
+            <img src="{% static 'images/jewelry.png' %}" class="img-fluid" style="transform: scale(0.4);">
+        </div>
+        <div class="col-lg-3">
+            <img src="{% static 'images/jewelry.png' %}" class="img-fluid" style="transform: scale(0.4);">
+        </div>
+    </div>
+</div>
+-->
 
 {% endblock %}
