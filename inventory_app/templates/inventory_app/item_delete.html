@@ -1,0 +1,15 @@
+{% extends 'inventory_app/base_template.html' %}
+
+{% block content %}
+
+<p>Are you sure you want to delete "{{ item.name }}"?</p>
+
+<form action="{% url 'delete_item' item.id%}" method="POST">
+
+    {% csrf_token %}
+    <a class="btn btn-primary" href="{% url 'items' %}">Cancel</a>
+    <input class="btn btn-primary" type="submit" value="Confirm">
+
+</form>
+
+{% endblock %}

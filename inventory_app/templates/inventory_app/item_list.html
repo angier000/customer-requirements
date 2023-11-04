@@ -3,15 +3,20 @@
 
 {% block content %}
     <h2>Item List</h2>
+
     {% if item_list %}
         <ul>
             {% for item in item_list %}
                 <li>
-                    <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                    {{ item.name }}
+                    <a class="btn btn-primary" href="{{ item.get_absolute_url }}" role="button">View</a>
+                    <a class="btn btn-primary" href="{% url 'update_item' item.id %}" role="button">Update</a>
+                    <a class="btn btn-primary" href="{% url 'delete_item' item.id %}" role="button">Delete</a>
                 </li>
             {% endfor %}
         </ul>
     {% else %} 
         <p>No items have been added.</p>
     {% endif %}
+    <a class="btn btn-primary" href="{% url 'create_item' %}" role="button">New Item</a>
 {% endblock %}
