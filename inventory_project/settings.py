@@ -130,9 +130,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+# url where images are accessed
 MEDIA_URL = '/images/'
 
-# Define the absolute filesystem path to the directory where media files will be stored
+# Define the absolute path to the directory where media files will be stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 

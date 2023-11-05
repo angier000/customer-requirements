@@ -3,7 +3,15 @@
 
 {% block content %}
     <p><strong>Item: </strong> {{ item.name }}</p>
-    <p><strong>Description: </strong> {{ item.description }}</p>
+    <p><strong>Price: $</strong> {{ item.price }}</p>
+
+    {% if item.description %}
+        <p><strong>Serial Number: </strong> {{ item.serial_number }}</p>
+    {% endif %}
+
+    {% if item.description %}
+        <p><strong>Description: </strong> {{ item.description }}</p>
+    {% endif %}
 
     {% if item.image %}
         <img src="{{ item.image.url }}" width=300>
