@@ -1,6 +1,8 @@
 {% extends 'inventory_app/base_template.html' %}
 
 {% block content %}
+<body style="background-color: #E1F1FF;">
+<div class="container-fluid my-2" style="font-size: 18px;">
 
     <form action="" method="POST" enctype="multipart/form-data">
 
@@ -8,7 +10,10 @@
         <table>
             {{ form.as_table }}
         </table>
+        <br>
         <input type="submit" name="Submit">
     </form>
-
+</done>
+</div>
+</body>
 {% endblock %}

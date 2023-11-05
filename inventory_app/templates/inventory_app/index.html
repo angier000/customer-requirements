@@ -6,36 +6,36 @@
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-<body style="background-color: lightgray;">
+<body style="background-color: #E1F1FF;">
+<br>
 <h1 class="text-center">Inventory Tracker</h1>
 
-<br>
-
-<div class="container mx-auto justify-content-center bg-light bg-opacity-25" style="padding: 25px; margin: 50px;">
+<div class="container mx-auto justify-content-center bg-light" style="padding: 25px; margin: 50px;">
     <h3 class="text-center">Keep track of valuable items in your home</h3>
     <div class="row mx-auto items-align-center">
         <div class="col-md-2 mx-auto"></div>
         <div class="col-md-2 offset-1">
-            <img src="{% static 'images/jewelry.png' %}" class=" rounded img-fluid" style="max-width: 70%; height: auto;">
+            <img src="{% static 'images/jewelry.png' %}" class=" rounded img-fluid" style="max-width: 70%; height: auto;" alt="jewelry">
         </div>
         <div class="col-md-2 mx-auto">
-            <img src="{% static 'images/grand-piano.png' %}" class="img-fluid" style="max-width: 70%; height: auto;">
+            <img src="{% static 'images/grand-piano.png' %}" class="img-fluid" style="max-width: 70%; height: auto;" alt="grand piano">
         </div>
         <div class="col-md-2 mx-auto">
-            <img src="{% static 'images/sofa.png' %}" class="img-fluid" style="max-width: 70%; height: auto;">
+            <img src="{% static 'images/sofa.png' %}" class="img-fluid" style="max-width: 70%; height: auto;" alt="sofa">
         </div>
         <div class="col-md-2 mx-auto"></div>
     </div>
-    <br>
-    <br>
-    <h3 class="text-center">Keep a detailed record of your valuables in case of a disaster</h3>
+</div>
+
+<div class="container mx-auto justify-content-center bg-light" style="padding: 25px; margin: 50px;">
+    <h3 class="text-center">Keep a detailed record of your valuables in case of a disaster and use for insurance</h3>
     <div class="row mx-auto">
         <div class="col-md-2 mx-auto"></div>
         <div class="col-md-2 offset-1">
-            <img src="{% static 'images/fire.png' %}" class="img-fluid" style="max-width: 85%; height: auto;">
+            <img src="{% static 'images/fire.png' %}" class="img-fluid" style="max-width: 85%; height: auto;" alt="house on fire">
         </div>
         <div class="col-md-2 mx-auto">
-            <img src="{% static 'images/flooded-house.png' %}" class="img-fluid" style="max-width: 85%; height: auto;">
+            <img src="{% static 'images/flooded-house.png' %}" class="img-fluid" style="max-width: 85%; height: auto;" alt="flooded house">
         </div>
         <div class="col-md-2 mx-auto"></div>
     </div>

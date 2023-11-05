@@ -1,6 +1,6 @@
 {% extends 'inventory_app/base_template.html' %}
 
-
+{% comment %}
 {% block content %}
     <h2>Item List</h2>
 
@@ -19,4 +19,36 @@
         <p>No items have been added.</p>
     {% endif %}
     <a class="btn btn-primary" href="{% url 'create_item' %}" role="button">New Item</a>
+{% endblock %}
+{% endcomment %}
+
+{% block content %}
+<body style="background-color: #E1F1FF;">
+<div class="container-fluid mx-3">
+    <br>
+    <h2>Item List</h2>
+    <br>
+
+    {% if item_list %}
+        <div class="card-columns">
+            {% for item in item_list %}
+                <div class="card me-4" style="max-width: 320px;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 25px;">{{ item.name }}</h5>
+                        <a href="{{ item.get_absolute_url }}" class="btn btn-primary me-2" style="font-size: 18px;" role="button" aria-label="View item">View</a>
+                        <a href="{% url 'update_item' item.id %}" class="btn btn-secondary m-2" style="font-size: 18px;" role="button">Update</a>
+                        <a href="{% url 'delete_item' item.id %}" class="btn btn-danger m-2" style="font-size: 18px;" role="button">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %} 
+        <p style="font-size: 20px;">No items have been added.</p>
+    {% endif %}
+    <div class="mx-0 my-2">
+        <a class="btn btn-success" style="width: 320px; font-size: 18px" href="{% url 'create_item' %}" role="button">New Item</a>
+    </div>
+    
+</div>
+</body>
 {% endblock %}
