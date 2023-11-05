@@ -19,8 +19,8 @@ def createItem(request):
     form = ItemForm()
 
     if request.method == 'POST':
-        # create new item
-        form = ItemForm(request.POST)
+        # create new item, this is what's being submitted
+        form = ItemForm(request.POST, request.FILES)
 
         if form.is_valid():
             # save to database
@@ -41,7 +41,7 @@ def updateItem(request, item_id):
 
     if request.method == 'POST':
         # set updated data to specific instance of item
-        form = ItemForm(request.POST, instance=item)
+        form = ItemForm(request.POST, request.FILES, instance=item)
         
         if form.is_valid():
             # save new instance to database

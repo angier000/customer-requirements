@@ -2,8 +2,8 @@ from django.forms import ModelForm
 from .models import Item
 
 
-#create class for project form
+#create class for item form
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields =('name', 'description')
+        fields =('name', 'description', 'image')

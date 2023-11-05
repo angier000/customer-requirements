@@ -132,6 +132,9 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/images/'
 
+# Define the absolute filesystem path to the directory where media files will be stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
