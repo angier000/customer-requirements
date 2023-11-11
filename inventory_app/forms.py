@@ -7,4 +7,3 @@ class ItemForm(ModelForm):
     class Meta:
         model = Item
         fields =('name', 'price', 'serial_number', 'description', 'image')
-        #fields =('name', 'description', 'image')

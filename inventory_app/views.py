@@ -26,7 +26,9 @@ def createItem(request):
             # save to database
             form.save()
 
-            # Redirect back to the portfolio detail page
+            print(form.cleaned_data['image'])
+
+            # Redirect back to the item list page
             return redirect('items')
     
     context = {'form': form}
@@ -47,7 +49,7 @@ def updateItem(request, item_id):
             # save new instance to database
             form.save()
 
-            # Redirect back to the portfolio detail page
+            # Redirect back to the item list page
             return redirect('items')
     
     context = {'form': form}

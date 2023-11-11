@@ -1,19 +1,22 @@
 {% extends 'inventory_app/base_template.html' %}
 
 {% block content %}
+{% comment %}
 <body style="background-color: #E1F1FF;">
-<div class="text-center">
-<br>
-<p style="font-size: 20px;">Are you sure you want to delete "{{ item.name }}"?</p>
+{% endcomment %}
+<body class="bg-light">
+    <div class="text-center">
+    <br>
+    <p style="font-size: 20px;">Are you sure you want to delete "{{ item.name }}"?</p>
 
-<form action="{% url 'delete_item' item.id%}" method="POST">
+    <form action="{% url 'delete_item' item.id%}" method="POST">
 
-    {% csrf_token %}
-    <a class="btn btn-secondary" href="{% url 'items' %}">Cancel</a>
-    <input class="btn btn-danger" type="submit" value="Confirm">
+        {% csrf_token %}
+        <a class="btn btn-secondary" href="{% url 'items' %}">Cancel</a>
+        <input class="btn btn-danger" type="submit" value="Confirm">
 
-</form>
+    </form>
 
-</div>
+    </div>
 </body>
 {% endblock %}
