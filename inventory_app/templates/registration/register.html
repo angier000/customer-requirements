@@ -7,6 +7,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" name="Create User" />
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
   </form>
   {{form.errors}}
 {% endblock %}

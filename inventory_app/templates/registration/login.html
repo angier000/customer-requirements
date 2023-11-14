@@ -37,8 +37,15 @@
     <input type="hidden" name="next" value="{{ next }}">
   </form>
 
+
+ {# {% for message in messages %}<p id="messages">{{messages}}</p>{% endfor %}   #} 
+
+  
+
+
   {# Assumes you setup the password_reset view in your URLconf #}
   <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
   {# <!-- <p><a href="{% url 'register_page' %}">Register</a></p> --> #}
+  <p>Don't have an account? <a href="{% url 'register_page' %}">Register</a></p>
 
 {% endblock %}
