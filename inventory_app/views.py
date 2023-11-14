@@ -10,6 +10,8 @@ from django.contrib import messages
 
 # Create your views here.
 
+# if user is not logged in, send to login page
+@login_required(login_url='login')
 def index(request):
     return render( request, 'inventory_app/index.html')
 
@@ -19,6 +21,7 @@ class ItemListView(generic.ListView):
 class ItemDetailView(generic.DetailView):
     model = Item
 
+@login_required(login_url='login')
 def createItem(request):
     form = ItemForm()
 
@@ -38,6 +41,7 @@ def createItem(request):
     context = {'form': form}
     return render(request, 'inventory_app/item_form.html', context)
 
+@login_required(login_url='login')
 def updateItem(request, item_id):
     # get specified item
     item = get_object_or_404(Item, pk=item_id)
@@ -59,6 +63,7 @@ def updateItem(request, item_id):
     context = {'form': form}
     return render(request, 'inventory_app/item_form.html', context)
 
+@login_required(login_url='login')
 def deleteItem(request, item_id):
     # get specified item
     item = get_object_or_404(Item, pk=item_id)
@@ -98,10 +103,14 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('index')
         else:
-            messages.info(request, 'Unsername or password is incorrect')
+            messages.info(request, 'Username or password is incorrect')
 
     context = {}
     return render(request, 'registration/login.html', context)
 '''
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')

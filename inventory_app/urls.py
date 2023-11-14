@@ -11,5 +11,5 @@ urlpatterns = [
     path('items/delete_item/<int:item_id>', views.deleteItem, name='delete_item'),
     path('accounts/register/', views.registerPage, name = 'register_page'),
     #path('accounts/login/', views.loginPage, name = 'login'),
-    #path('accounts/logout/', views.logoutPage, name = 'logout'),
+    path('accounts/logout/', views.logoutUser, name = 'logout'),
 ]
