@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from django.views import generic
-from .forms import ItemForm
+from .forms import ItemForm, CreateUserForm
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -66,4 +67,16 @@ def deleteItem(request, item_id):
     context = {'item': item}
     return render(request, 'inventory_app/item_delete.html', context)
 
+
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+    context ={'form':form}
+    return render(request, 'registration/register.html', context)
 
