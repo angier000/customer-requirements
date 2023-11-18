@@ -7,6 +7,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .decorators import unauthenticated_user
+
+from django.contrib.auth.views import LoginView
+
 
 # Create your views here.
 
@@ -75,7 +79,7 @@ def deleteItem(request, item_id):
     context = {'item': item}
     return render(request, 'inventory_app/item_delete.html', context)
 
-
+@unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
 
@@ -110,6 +114,11 @@ def loginPage(request):
     context = {}
     return render(request, 'registration/login.html', context)
 '''
+
+@unauthenticated_user
+def loginPage(request):
+    return LoginView.as_view()(request)
+
 
 def logoutUser(request):
     logout(request)
