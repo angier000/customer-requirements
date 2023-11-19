@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Test</title>
+<title>Inventory Tracker</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 {% load bootstrap5 %}
@@ -30,9 +30,10 @@
 
             </ul>
         </div>
-
-        <span style="color: white;" >Welcome, {{request.user}}</span>
-        <span><a class="nav-link text-white" style="font-size: 20px;" href="{% url 'logout' %}">Logout</a></span>
+        {% if request.user.is_authenticated %}
+            <span style="color: white;" >Welcome, {{request.user}}</span>
+            <span><a class="nav-link text-white" style="font-size: 20px;" href="{% url 'logout' %}">Logout</a></span>
+        {% endif %}
     </div>
 
  </nav>
