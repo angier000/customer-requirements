@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .decorators import unauthenticated_user, allowed_users
+from .decorators import unauthenticated_user, allowed_users, user_only
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -98,6 +98,8 @@ def registerPage(request):
             username = form.cleaned_data.get('username')
             group = Group.objects.get(name='owner')
             user.groups.add(group)
+            #owner = Owner
+
             messages.success(request, 'Account was created for ' + username)
 
             return redirect('login')
@@ -123,6 +125,9 @@ def loginPage(request):
     context = {}
     return render(request, 'registration/login.html', context)
 '''
+
+#def userPage(request):
+
 
 
 @unauthenticated_user # redirect to home page if authrnticated user tries to go to login page

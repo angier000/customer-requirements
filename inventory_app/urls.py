@@ -18,6 +18,7 @@ urlpatterns = [
     # accounts/ password_reset/done/ [name='password_reset_done']
     # accounts/ reset/<uidb64>/<token>/ [name='password_reset_confirm']
     # accounts/ reset/done/ [name='password_reset_complete']
+    #path('user/', views.userPage, name='user_page'),
     path('accounts/register/', views.registerPage, name = 'register_page'),
     path('accounts/login/', views.loginPage, name = 'login'),
     path('accounts/logout/', views.logoutUser, name = 'logout'),

@@ -16,8 +16,8 @@ class Owner(models.Model):
 
 
 class Inventory(models.Model):
-    title = models.CharField(max_length = 200)
-    about = models.TextField(blank = True)
+    #title = models.CharField(max_length = 200)
+    #about = models.TextField(blank = True)
     owner = models.OneToOneField(Owner, on_delete=models.CASCADE, unique=True, null=True)
 
     def __str__(self):
