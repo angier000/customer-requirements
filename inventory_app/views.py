@@ -94,11 +94,18 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
 
         if form.is_valid():
-            user = form.save()
+            user = form.save() # create user
             username = form.cleaned_data.get('username')
             group = Group.objects.get(name='owner')
-            user.groups.add(group)
-            #owner = Owner
+            user.groups.add(group) # add user to owner group
+
+            name = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email') 
+
+            owner = Owner.objects.create(user=user, name=name, email=email) # create associated owner
+            inventory = Inventory.objects.create() # create an empty inventory
+            owner.inventory = inventory # associate inventory with owner
+            owner.save()
 
             messages.success(request, 'Account was created for ' + username)
 
@@ -126,8 +133,16 @@ def loginPage(request):
     return render(request, 'registration/login.html', context)
 '''
 
-#def userPage(request):
 
+@login_required(login_url='login') # if user not authentucated, refirect to login page
+@allowed_users(allowed_roles=['owner']) # once logged in only users in allowed_roles can user page
+def userPage(request):
+    owner = request.user.owner
+    print('owner: ', owner)
+    inventory = owner.inventory
+    print('inventory id: ', inventory.id)
+    context = {'inventory':inventory, 'owner':owner}
+    return render(request, 'inventory_app/user.html', context)
 
 
 @unauthenticated_user # redirect to home page if authrnticated user tries to go to login page

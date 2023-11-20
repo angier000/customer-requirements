@@ -3,28 +3,29 @@ from django.urls import reverse
 from django.contrib.auth.models import User
     
 
+class Inventory(models.Model):
+    #title = models.CharField(max_length = 200)
+    #about = models.TextField(blank = True)
+    #owner = models.OneToOneField(Owner, on_delete=models.CASCADE, unique=True, null=True)
+
+    #def __str__(self):
+    #    return self.title
+    
+    def get_absolute_url(self):
+        return reverse('inventory-detail', args=[str(self.id)])
+
+
 class Owner(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
+    inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE, unique=True, null=True)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('user-detail', args=[str(self.id)])
-
-
-class Inventory(models.Model):
-    #title = models.CharField(max_length = 200)
-    #about = models.TextField(blank = True)
-    owner = models.OneToOneField(Owner, on_delete=models.CASCADE, unique=True, null=True)
-
-    def __str__(self):
-        return self.title
-    
-    def get_absolute_url(self):
-        return reverse('inventory-detail', args=[str(self.id)])
 
 
 class Item(models.Model):
