@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .decorators import unauthenticated_user, allowed_users
+from .decorators import unauthenticated_user, allowed_users, item_permission
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -29,11 +29,15 @@ class ItemDetailView(LoginRequiredMixin, generic.DetailView):
 
 @login_required(login_url='login') # if user not authentucated, refirect to login page
 @allowed_users(allowed_roles=['owner']) # once logged in only users in allowed_roles can access home page
+@item_permission
 def createItem(request, inventory_id):
+    inventory = get_object_or_404(Inventory, id=inventory_id)
     form = ItemForm()
 
+    print('inventory: ', inventory.id)
+
     if request.method == 'POST':
-        inventory = get_object_or_404(Inventory, id=inventory_id)
+        
         # create new item, this is what's being submitted
         form = ItemForm(request.POST, request.FILES)
 
@@ -50,11 +54,12 @@ def createItem(request, inventory_id):
             # Redirect back to the item list page
             return redirect('inventory-detail', inventory_id)
     
-    context = {'form': form}
+    context = {'form': form, 'inventory':inventory}
     return render(request, 'inventory_app/item_form.html', context)
 
 @login_required(login_url='login') # if user not authentucated, refirect to login page
 @allowed_users(allowed_roles=['owner']) # once logged in only users in allowed_roles can access home page
+@item_permission
 def updateItem(request, inventory_id, item_id):
     # get specified item and inventory
     inventory = get_object_or_404(Inventory, id=inventory_id)
@@ -79,6 +84,7 @@ def updateItem(request, inventory_id, item_id):
 
 @login_required(login_url='login') # if user not authentucated, refirect to login page
 @allowed_users(allowed_roles=['owner']) # once logged in only users in allowed_roles can access home page
+@item_permission
 def deleteItem(request, inventory_id, item_id):
     # get specified item and inventory
     inventory = get_object_or_404(Inventory, id=inventory_id)
@@ -102,6 +108,8 @@ class InventoryDetailView(generic.DetailView):
         # call method parent class (InventoryDetailView) and get data from original method
         context = super().get_context_data(**kwargs)
 
+        context['user'] = self.request.user 
+
         # get current inventory
         current = self.get_object()
 
@@ -113,6 +121,10 @@ class InventoryDetailView(generic.DetailView):
 
         # return updated context
         return context
+    
+
+class OwnerListView(generic.ListView):
+    model = Owner
 
 
 @unauthenticated_user # if authenticated user tries to access login page, redirect to home page

@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
+from .models import Item, Inventory
 
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args, **kwargs):
@@ -30,6 +32,21 @@ def allowed_users(allowed_roles=[]):
         return wrapper_func
     return decorator
 
+
+def item_permission(view_func):
+    def wrapper_func(request, *args, **kwargs):
+        #item_id = kwargs.get('item_id') # get item id
+        inventory_id = kwargs.get('inventory_id')
+
+        inventory = get_object_or_404(Inventory, id=inventory_id) # get item object
+
+        if request.user != inventory.owner.user:
+            return HttpResponse('You are not authorized to view this page.')
+        
+        
+        # Call the original view function if the user has permission
+        return view_func(request, *args, **kwargs)
+    return wrapper_func
 
 
 
