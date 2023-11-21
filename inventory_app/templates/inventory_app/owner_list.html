@@ -4,7 +4,6 @@
 {% if owner_list %}
     <ul>
         {% for owner in owner_list %}
-        <p>Debug: {{owner.inventory}}</p>
             <li>
                 <a href="{% url 'inventory-detail' pk=owner.inventory.id %}">{{ owner.name }}</a>
             </li>

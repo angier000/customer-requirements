@@ -108,7 +108,7 @@ class InventoryDetailView(generic.DetailView):
         # call method parent class (InventoryDetailView) and get data from original method
         context = super().get_context_data(**kwargs)
 
-        context['user'] = self.request.user 
+        #context['user'] = self.request.user 
 
         # get current inventory
         current = self.get_object()
