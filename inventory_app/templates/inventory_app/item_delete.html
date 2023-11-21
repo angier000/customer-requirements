@@ -9,10 +9,10 @@
     <br>
     <p style="font-size: 20px;">Are you sure you want to delete "{{ item.name }}"?</p>
 
-    <form action="{% url 'delete_item' item.id%}" method="POST">
+    <form action="{% url 'delete_item' item.inventory.id item.id%}" method="POST">
 
         {% csrf_token %}
-        <a class="btn btn-secondary" href="{% url 'items' %}">Cancel</a>
+        <a class="btn btn-secondary" href="{% url 'inventory-detail' item.inventory.id %}">Cancel</a>
         <input class="btn btn-danger" type="submit" value="Confirm">
 
     </form>
