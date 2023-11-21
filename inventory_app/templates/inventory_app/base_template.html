@@ -25,6 +25,12 @@
                     <a class="nav-link text-white" style="font-size: 20px;" href="{% url 'index' %}" aria-label="Visit the homepage">Home</a>
                 </li>
 
+                <li>
+                    {% if not request.user.is_authenticated %}
+                        <a class="nav-link text-white" style="font-size: 20px;" href="{% url 'owners' %}" aria-label="View list of owners">Owners</a>
+                    {% endif %}
+                </li>
+
                 {% if request.user.is_authenticated %}
                     {% if request.user.owner.inventory.id %}
                         <li class="nav-item"><a class="nav-link text-white" style="font-size: 20px;" href="{% url 'inventory-detail' request.user.owner.inventory.id %}" aria-label="View inventory">My Inventory</a></li>

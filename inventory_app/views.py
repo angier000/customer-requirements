@@ -24,7 +24,7 @@ def index(request):
 class ItemListView(generic.ListView):
     model = Item
     
-class ItemDetailView(LoginRequiredMixin, generic.DetailView):
+class ItemDetailView(generic.DetailView):
     model = Item
 
 @login_required(login_url='login') # if user not authentucated, refirect to login page
