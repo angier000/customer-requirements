@@ -1,0 +1,13 @@
+{% extends 'inventory_app/base_template.html' %}
+
+{% block content %}
+  <h2>Registration</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="Create User" />
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  </form>
+  {{form.errors}}
+{% endblock %}
