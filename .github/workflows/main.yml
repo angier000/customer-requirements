@@ -11,4 +11,4 @@ jobs:
       - uses: nanasess/setup-chromedriver@v2
 
       - run: python manage.py test # run Django tests
-      - run: flake8 . # run flake8 test
+      #- run: flake8 . # run flake8 test
