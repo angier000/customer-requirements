@@ -1,6 +1,7 @@
 from selenium import webdriver
 from django.test import LiveServerTestCase
 import os
+import time
 
 
 class Hosttest(LiveServerTestCase):
@@ -19,6 +20,7 @@ class Hosttest(LiveServerTestCase):
 
         self.assertIn("Inventory Tracker", self.driver.title)
         #self.assertIn(1, [1,2,3])
+        time.sleep(5)
 
     def tearDown(self):
         self.driver.quit

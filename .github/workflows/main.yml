@@ -12,14 +12,6 @@ jobs:
       - name: Setup Chromedriver
         uses: nanasess/setup-chromedriver@v2
 
-      - name: Display Chrome and Chromedriver versions
-        run: |
-          google-chrome --version
-          chromedriver --version
-
-      - run: google-chrome --version
-             chromedriver --version
-
       - name: Run Django tests
         run: python manage.py test
      
