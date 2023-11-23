@@ -11,7 +11,7 @@ jobs:
       - uses: nanasess/setup-chromedriver@v2
         with:
           # Optional: do not specify to match Chrome's version
-          chromedriver-version: '114.0.5735.90'
+          chromedriver-version: ''
 
       #- run: python manage.py test # run Django tests
       #- run: flake8 . # run flake8 test
@@ -20,3 +20,5 @@ jobs:
           chromedriver --url-base=/wd/hub &
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
           python manage.py test # run Django tests
+          google-chrome --version
+          chromedriver --version

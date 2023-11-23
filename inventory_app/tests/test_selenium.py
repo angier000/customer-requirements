@@ -13,6 +13,7 @@ class Hosttest(LiveServerTestCase):
         self.driver = webdriver.Chrome()
 
     def test_homepage(self):
+        #self.driver.get(self.live_server_url + ':8000')
         self.driver.get(self.live_server_url) 
         #self.driver.get('http://127.0.0.1:8000/')
 
