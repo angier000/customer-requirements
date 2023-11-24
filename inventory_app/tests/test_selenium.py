@@ -4,6 +4,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import os
 import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 SERVER_URL = 'http://127.0.0.1:8000'
 #SERVER_URL = self.live_server_url
@@ -57,8 +59,12 @@ class Hosttest(LiveServerTestCase):
         user_password.send_keys('inventorytest')
         submit.send_keys(Keys.RETURN)
 
+        # Explicitly wait for the welcome message
+        wait = WebDriverWait(self.driver, 10)
+        message = wait.until(EC.presence_of_element_located((By.XPATH, '//span[contains(text(), "Welcome, testuser")]')))
+
         # check for welcome message ensuring the correct user is logged in
-        message = self.driver.find_element(By.XPATH, '//span[contains(text(), "Welcome, testuser")]')
+        #message = self.driver.find_element(By.XPATH, '//span[contains(text(), "Welcome, testuser")]')
         self.assertTrue(message.is_displayed(), "Welcome, testuser")
 
         # log out user
