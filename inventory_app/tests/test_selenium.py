@@ -42,6 +42,7 @@ class Hosttest(LiveServerTestCase):
         #self.driver.get(self.live_server_url + '/accounts/login/')
         self.driver.get(server_url  + 'accounts/login/')
         print("Current URL:", self.driver.current_url)
+        print("TEST-----------Constructed URL:", server_url + 'accounts/login/')
 
         # define username and p[assword
         user_name = self.driver.find_element(By.NAME, 'username')
