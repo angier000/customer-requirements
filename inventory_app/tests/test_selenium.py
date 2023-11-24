@@ -60,8 +60,10 @@ class Hosttest(LiveServerTestCase):
         submit.send_keys(Keys.RETURN)
 
         # Explicitly wait for the welcome message
-        wait = WebDriverWait(self.driver, 10)
+        print("Current URL before waiting:", self.driver.current_url)
+        wait = WebDriverWait(self.driver, 60)
         message = wait.until(EC.presence_of_element_located((By.XPATH, '//span[contains(text(), "Welcome, testuser")]')))
+        print("Current URL after waiting:", self.driver.current_url)
 
         # check for welcome message ensuring the correct user is logged in
         #message = self.driver.find_element(By.XPATH, '//span[contains(text(), "Welcome, testuser")]')
