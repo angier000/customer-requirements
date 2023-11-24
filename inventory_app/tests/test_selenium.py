@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 import os
 import time
 
-SERVER_URL = 'http://127.0.0.1:8000/'
+SERVER_URL = 'http://127.0.0.1:8000'
 #SERVER_URL = self.live_server_url
 
 class Hosttest(LiveServerTestCase):
@@ -43,9 +43,9 @@ class Hosttest(LiveServerTestCase):
         print('TEST------ server_url = ', server_url)
 
         #self.driver.get(self.live_server_url + '/accounts/login/')
-        self.driver.get(server_url  + 'accounts/login/')
+        self.driver.get(server_url  + '/accounts/login/')
         print("Current URL:", self.driver.current_url)
-        print("TEST-----------Constructed URL:", server_url + 'accounts/login/')
+        print("TEST-----------Constructed URL:", server_url + '/accounts/login/')
 
         # define username and p[assword
         user_name = self.driver.find_element(By.NAME, 'username')
@@ -66,7 +66,7 @@ class Hosttest(LiveServerTestCase):
         logout.click()
 
         # Verify that the user is redirected to the login page
-        login_url = SERVER_URL + 'accounts/login/'
+        login_url = SERVER_URL + '/accounts/login/'
         self.assertEqual(self.driver.current_url, login_url, "Logout redirection issue")
 
 
