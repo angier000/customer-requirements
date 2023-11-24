@@ -107,7 +107,7 @@ class Hosttest(LiveServerTestCase):
         logout.click()
 
         # Verify that the user is redirected to the login page
-        login_url = SERVER_URL + '/accounts/login/'
+        login_url = server_url + '/accounts/login/'
         self.assertEqual(self.driver.current_url, login_url, "Logout redirection issue")
 
 
