@@ -60,64 +60,69 @@ class Hosttest(LiveServerTestCase):
         server_url = self.get_server_url()
         print('TEST------ server_url = ', server_url)
 
+        # register user
         self.driver.get(server_url  + '/accounts/register/')
 
+        time.sleep(1)
         username_input = self.driver.find_element(By.NAME, 'username')
         email_input = self.driver.find_element(By.NAME, 'email')
         name_input = self.driver.find_element(By.NAME, 'name')
         password1_input = self.driver.find_element(By.NAME, 'password1')
         password2_input = self.driver.find_element(By.NAME, 'password2')
 
-        username_input.send_keys('testusername')
+        # input info
+        username_input.send_keys('usernametest')
         email_input.send_keys('test@uccs.edu')
-        name_input.send_keys('testname')
-        password1_input.send_keys('testpassword')
-        password2_input.send_keys('testpassword')
+        name_input.send_keys('nametest')
+        password1_input.send_keys('passwordtest')
+        password2_input.send_keys('passwordtest')
+        time.sleep(1)
 
-
+        # submit
         submit_button = self.driver.find_element(By.CSS_SELECTOR, 'input[type="submit"]')
         submit_button.click()
+        time.sleep(3)
 
 
-        #self.driver.get(self.live_server_url + '/accounts/login/')
+        # go to login page
         self.driver.get(server_url  + '/accounts/login/')
         print("Current URL:", self.driver.current_url)
-        print("TEST-----------Constructed URL:", server_url + '/accounts/login/')
+        print("TEST URL:", server_url + '/accounts/login/')
 
-        # define username and p[assword
+        # define username and password
         user_name = self.driver.find_element(By.NAME, 'username')
         user_password = self.driver.find_element(By.NAME, 'password')
         submit = self.driver.find_element(By.CSS_SELECTOR, 'input[type="submit"]')
 
         # log in user
-        user_name.send_keys('testusername')
-        user_password.send_keys('testpassword')
+        user_name.send_keys('usernametest')
+        user_password.send_keys('passwordtest')
         submit.send_keys(Keys.RETURN)
+        time.sleep(1)
 
-        time.sleep(3)
-        message = self.driver.find_element(By.XPATH, '//span[contains(text(), "Welcome, testusername")]')
-        print("Current URL after waiting:", self.driver.current_url)
+        message = self.driver.find_element(By.XPATH, '//span[contains(text(), "Welcome, usernametest")]')
 
         # check for welcome message ensuring the correct user is logged in
-        time.sleep(3)
-        self.assertTrue(message.is_displayed(), "Welcome, testusername")
+        self.assertTrue(message.is_displayed(), "Welcome, usernametest")
 
         # log out user
         logout = self.driver.find_element(By.XPATH, '//a[@href="/accounts/logout/"]')
         logout.click()
+        time.sleep(1)
 
         # Verify that the user is redirected to the login page
         login_url = server_url + '/accounts/login/'
         self.assertEqual(self.driver.current_url, login_url, "Logout redirection issue")
 
 
-        time.sleep(3)
+        time.sleep(1)
 
 
 
     
 
     def tearDown(self):
+        self.driver.quit
         '''
         # Clean up the test data after the test is complete
         self.owner_user.delete()
@@ -128,5 +133,3 @@ class Hosttest(LiveServerTestCase):
         owner_group = Group.objects.get(name='owner')
         owner_group.user_set.remove(self.owner_user)
         '''
-
-        self.driver.quit

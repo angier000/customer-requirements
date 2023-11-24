@@ -23,6 +23,10 @@ class TestViews(TestCase):
         self.url = reverse('create_item', args=[self.inventory.id])
         #self.item = Item.objects.create(name='Test Item', price=10.00)
 
+    def tearDown(self):
+        print('testview test: ', self.owner_user.first_name)
+        self.owner_user.delete()
+
     def test_create_item_valid_form(self):
         self.client.login(username='testuser', password='testpassword') # log in user
         response = self.client.post(self.url, {'name': 'Test Item', 'price': 10.00})
