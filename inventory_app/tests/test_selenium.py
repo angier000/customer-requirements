@@ -28,6 +28,7 @@ class Hosttest(LiveServerTestCase):
 
 
     def test_homepage(self):
+        print('TEST------ In test_homepage function')
         server_url = self.get_server_url()
         #self.driver.get(self.live_server_url) 
         self.driver.get(server_url)
@@ -37,7 +38,9 @@ class Hosttest(LiveServerTestCase):
         time.sleep(1)
 
     def test_login_logout(self):
+        print('TEST------ In test_login_logout unction')
         server_url = self.get_server_url()
+        print('TEST------ server_url = ', server_url)
 
         #self.driver.get(self.live_server_url + '/accounts/login/')
         self.driver.get(server_url  + 'accounts/login/')
