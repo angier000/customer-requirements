@@ -55,6 +55,12 @@ def createItem(request, inventory_id):
             # save to database
             item.save()
 
+            # Get the tags from the form data
+            tag_ids = request.POST.getlist('tags')
+
+            # Associate the tags with the item
+            item.tag.set(Tag.objects.filter(id__in=tag_ids))
+
             print(form.cleaned_data['image'])
 
             # Redirect back to the item list page
@@ -71,8 +77,11 @@ def updateItem(request, inventory_id, item_id):
     inventory = get_object_or_404(Inventory, id=inventory_id)
     item = get_object_or_404(Item, pk=item_id)
 
+    # Pass the current tags of the item to the form
+    initial_tags = item.tag.all().values_list('id', flat=True)
+
     # fill form with specified item's data
-    form = ItemForm(instance=item)
+    form = ItemForm(instance=item, initial={'tags': initial_tags})
 
     if request.method == 'POST':
         # set updated data to specific instance of item
@@ -81,6 +90,12 @@ def updateItem(request, inventory_id, item_id):
         if form.is_valid():
             # save new instance to database
             form.save()
+
+            # Get the tags from the form data
+            tag_ids = request.POST.getlist('tags')
+
+            # Associate the tags with the item
+            item.tag.set(Tag.objects.filter(id__in=tag_ids))
 
             # Redirect back to the item list page
             return redirect('inventory-detail', inventory_id)

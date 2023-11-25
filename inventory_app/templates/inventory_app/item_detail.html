@@ -20,6 +20,14 @@
         <img src="{{ item.image.url }}" width=300>
     {% endif %}
 
+    <h2>Tags:</h2>
+    <ul>
+        {% for tag in item.tag.all %}
+            <li>{{ tag.name }}</li>
+        {% endfor %}
+    </ul>
+
+
     <br>
     <br>
     <a class="btn btn-secondary" style="width: 320px; font-size: 18px" href="{% url 'inventory-detail' item.inventory.id %}" role="button">Back To Inventory</a>

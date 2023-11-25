@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Item, Owner
+from .models import Item, Owner, Tag
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
@@ -10,6 +10,11 @@ class ItemForm(ModelForm):
     class Meta:
         model = Item
         fields =('name', 'price', 'serial_number', 'description', 'image')
+
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
 
 class CreateUserForm(UserCreationForm):
     name = forms.CharField(max_length=200)
