@@ -41,7 +41,7 @@ class Item(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='uploads/', null=True, blank=True)
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE, null=True)
-    tag = models.ManyToManyField(to=Tag, blank=True)
+    tag = models.ManyToManyField(to=Tag)
 
     def __str__(self):
         return self.name

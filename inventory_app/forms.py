@@ -13,7 +13,8 @@ class ItemForm(ModelForm):
 
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple,
+        required=False
     )
 
 class CreateUserForm(UserCreationForm):
