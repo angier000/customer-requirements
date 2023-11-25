@@ -141,6 +141,7 @@ class InventoryDetailView(generic.DetailView):
         # request.get is the filter criteria selected by user, and apply to queryset
         # .item_set - access related item of n inventory
         item_filter = ItemFilter(self.request.GET, queryset=current_inventory.item_set.all())
+        #selected_tag = self.request.GET.getlist('tag')
 
         # add context info
         context['item_filter'] = item_filter

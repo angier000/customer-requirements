@@ -7,18 +7,18 @@
 
 <div class="card">
     <div class="card-body bg-secondary bg-opacity-25">
-        <form method="GET">
-            <div class="form-group">
+        <form method="GET" class="d-flex flex-row">
+            <div class="form-group mx-2">
                 <label for="{{ item_filter.form.name.id_for_label }}">Item Name:</label>
                 {{ item_filter.form.name }}
             </div>
 
-            <div class="form-group">
-                <label for="{{ item_filter.form.category.id_for_label }}">Category:</label>
-                {{ item_filter.form.category }}
+            <div class="form-group mx-2">
+                <label for="{{ item_filter.form.tags.id_for_label }}">Category:</label>
+                {{ item_filter.form.tags }}
             </div>
 
-            <button class="btn btn-secondary" type="submit">Search</button>
+            <button class="btn btn-secondary mx-2" type="submit">Search</button>
             <a href="{% url 'inventory-detail' inventory.id %}" class="btn btn-outline-secondary bg-white">Clear</a>
         </form>
     </div>
