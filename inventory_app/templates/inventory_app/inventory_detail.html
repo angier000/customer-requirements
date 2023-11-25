@@ -5,14 +5,30 @@
 
 <h1>{{ object.owner.user.username }}'s Inventory</h1>
 
-<div class="col">
-    <div class="card card body">
+<div class="card">
+    <div class="card-body">
         <form method="GET">
-            {{item_filter.form}}
-            <bitton class="btn btn-secondary" type="submit">Search</button>
+            <div class="form-group">
+                <label for="{{ item_filter.form.name.id_for_label }}">Item Name:</label>
+                {{ item_filter.form.name }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ item_filter.form.category.id_for_label }}">Category:</label>
+                {{ item_filter.form.category }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ item_filter.form.price.id_for_label }}">Price:</label>
+                {{ item_filter.form.price }}
+            </div>
+
+            <button class="btn btn-secondary" type="submit">Search</button>
+            <a href="{% url 'inventory-detail' inventory.id %}" class="btn btn-outline-secondary">Clear</a>
         </form>
     </div>
 </div>
+
 
     <h2>Items:</h2>
     <ul>

@@ -12,6 +12,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .filters import ItemFilter
+
 #test
 from django.conf import settings
 
@@ -115,13 +117,19 @@ class InventoryDetailView(generic.DetailView):
         #context['user'] = self.request.user 
 
         # get current inventory
-        current = self.get_object()
+        current_inventory = self.get_object()
 
         # get items associated with current inventory
-        items = Item.objects.filter(inventory=current)
+        #items = Item.objects.filter(inventory=current)
+
+        # gets all items associated with current inventory (queryset)
+        # request.get is the filter criteria selected by user, and apply to queryset
+        # .item_set - access related item of n inventory
+        item_filter = ItemFilter(self.request.GET, queryset=current_inventory.item_set.all())
 
         # add context info
-        context['items'] = items
+        context['item_filter'] = item_filter
+        context['items'] = item_filter.qs
 
         # return updated context
         return context

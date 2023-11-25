@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inventory_app',
     'bootstrap5',
+    'django_filters',
 ]
 
 # Add support for authenticating users
