@@ -5,6 +5,15 @@
 
 <h1>{{ object.owner.user.username }}'s Inventory</h1>
 
+<div class="col">
+    <div class="card card body">
+        <form method="GET">
+            {{item_filter.form}}
+            <bitton class="btn btn-secondary" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
     <h2>Items:</h2>
     <ul>
         {% for item in items %}

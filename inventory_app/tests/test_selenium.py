@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from django.contrib.auth.models import User, Group
 from inventory_app.models import Inventory, Owner
 
+from django.conf import settings
+
 SERVER_URL = 'http://127.0.0.1:8000'
 #SERVER_URL = self.live_server_url
 
@@ -56,9 +58,11 @@ class Hosttest(LiveServerTestCase):
 
 
     def test_login_logout(self):
-        print('TEST------ In test_login_logout unction')
+        print('TEST In test_login_logout unction')
         server_url = self.get_server_url()
-        print('TEST------ server_url = ', server_url)
+        print('TEST server_url = ', server_url)
+        print('User count before creation:', User.objects.count())
+        #print('Selenium Test Database Path:', settings.DATABASES['default']['NAME'])
 
         # register user
         self.driver.get(server_url  + '/accounts/register/')
@@ -118,7 +122,6 @@ class Hosttest(LiveServerTestCase):
         time.sleep(1)
 
 
-
     
 
     def tearDown(self):
@@ -133,3 +136,8 @@ class Hosttest(LiveServerTestCase):
         owner_group = Group.objects.get(name='owner')
         owner_group.user_set.remove(self.owner_user)
         '''
+        try:
+            test_user = User.objects.get(username='usernametest')
+            print('testuser: ', test_user)
+        except User.DoesNotExist:
+            print('User not found')

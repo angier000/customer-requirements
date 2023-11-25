@@ -12,6 +12,9 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+#test
+from django.conf import settings
+
 
 # Create your views here.
 
@@ -19,6 +22,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 #@login_required(login_url='login') # if user is not logged in, send to login page
 #@allowed_users(allowed_roles=['owner']) # once logged in only users in allowed_roles can access home page
 def index(request):
+    #print('Django Application Database Path:', settings.DATABASES['default']['NAME'])
     return render( request, 'inventory_app/index.html')
 
 class ItemListView(generic.ListView):
