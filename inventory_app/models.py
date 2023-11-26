@@ -19,6 +19,17 @@ class Owner(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
+    INSURANCE_CHOICES = [
+        (None, 'Select an option'),
+        ('StateFarm', 'State Farm'),
+        ('Allstate', 'Allstate'),
+        ('USAA', 'USAA'),
+        ('Lemonade', 'Lemonade'),
+        ('Nationwide', 'Nationwide'),
+        ('LibertyMutual', 'Liberty Mutual'),
+        ('Travelers', 'Travelers'),
+    ]
+    insurance = models.CharField(max_length=100, choices=INSURANCE_CHOICES, blank=True, null=True)
     inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE, unique=True, null=True)
 
     def __str__(self):

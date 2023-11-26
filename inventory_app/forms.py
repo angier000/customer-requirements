@@ -20,9 +20,21 @@ class ItemForm(ModelForm):
 class CreateUserForm(UserCreationForm):
     name = forms.CharField(max_length=200)
 
+    INSURANCE_CHOICES = [
+        (None, 'Select an option'),
+        ('StateFarm', 'State Farm'),
+        ('Allstate', 'Allstate'),
+        ('USAA', 'USAA'),
+        ('Lemonade', 'Lemonade'),
+        ('Nationwide', 'Nationwide'),
+        ('LibertyMutual', 'Liberty Mutual'),
+        ('Travelers', 'Travelers'),
+    ]
+    insurance = forms.ChoiceField(choices=INSURANCE_CHOICES, required=False)
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'name', 'password1', 'password2']
+        fields = ['username', 'email', 'name', 'insurance', 'password1', 'password2']
 
 class OwnerForm(ModelForm):
     class Meta:

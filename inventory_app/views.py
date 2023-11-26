@@ -168,10 +168,12 @@ def registerPage(request):
             group = Group.objects.get(name='owner')
             user.groups.add(group) # add user to owner group
 
+            # extra fields for owner model
             name = form.cleaned_data.get('name')
             email = form.cleaned_data.get('email') 
+            insurance = form.cleaned_data.get('insurance')
 
-            owner = Owner.objects.create(user=user, name=name, email=email) # create associated owner
+            owner = Owner.objects.create(user=user, name=name, email=email, insurance=insurance) # create associated owner
             inventory = Inventory.objects.create() # create an empty inventory
             owner.inventory = inventory # associate inventory with owner
             owner.save()
