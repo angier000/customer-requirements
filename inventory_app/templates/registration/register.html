@@ -1,13 +1,27 @@
 {% extends 'inventory_app/base_template.html' %}
 
 {% block content %}
-  <h2>Registration</h2>
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
 
   <form method="post">
+    <h2>Registration</h2>
+    <br>
+    
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="Create User" />
+    <table>
+    {% for field in form %}
+    <tr>
+
+      <td><p>{{field.label}}</p></td>
+      <td><p>{{field}}</p></td>
+
+    </tr>
+    {% endfor %}
+    </table>
+
+    <p><input type="submit" name="Create User"></input></p>
     <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
   </form>
   {{form.errors}}
 {% endblock %}
