@@ -15,4 +15,4 @@ class ItemFilter(django_filters.FilterSet):
 
     class Meta:
         model = Item
-        fields = Itemfields = ('name', 'serial_number', 'name')
+        fields = Itemfields = ('name',)
