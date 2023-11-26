@@ -3,38 +3,41 @@
  
 {% block content %}
 
-<h1>{{ object.owner.user.username }}'s Inventory</h1>
+<h1 class="text-center p-3">{{ object.owner.user.username }}'s Inventory</h1>
 
-<div class="card">
-    <div class="card-body bg-secondary bg-opacity-25">
-        <form method="GET" class="d-flex flex-row">
-            <div class="form-group mx-2">
-                <label for="{{ item_filter.form.name.id_for_label }}">Item Name:</label>
-                {{ item_filter.form.name }}
-            </div>
 
-            <div class="form-group mx-2">
-                <label for="{{ item_filter.form.tags.id_for_label }}">Category:</label>
-                {{ item_filter.form.tags }}
-            </div>
+<div class="container-fluid">
+<div class="row">
 
-            <button class="btn btn-secondary mx-2" type="submit">Search</button>
-            <a href="{% url 'inventory-detail' inventory.id %}" class="btn btn-outline-secondary bg-white">Clear</a>
-        </form>
+<div class="col-md-3">
+    <div class="card" style="width: 230px;">
+        <div class="card-body bg-secondary bg-opacity-25">
+            <form method="GET">
+
+                    <strong><label for="{{ item_filter.form.name.id_for_label }}">Item Name:</label></strong>
+                    {{ item_filter.form.name }}
+                    <br>
+                    <br>
+                    <strong><label for="{{ item_filter.form.tags.id_for_label }}">Category:</label></strong>
+                    {{ item_filter.form.tags }}
+                    <br>
+
+                <button class="btn btn-secondary mx-2" type="submit">Search</button>
+                <a href="{% url 'inventory-detail' inventory.id %}" class="btn btn-outline-secondary bg-white">Clear</a>
+            </form>
+        </div>
     </div>
 </div>
 
 
-    <h2>Items:</h2>
-    <ul>
-        {% for item in items %}
-            <li>{{ item.name }} - {{ item.description }} - {{ item.inventory }}</li>
-        {% endfor %}
-    </ul>
 
 
-<body class="bg-light">
-    <div class="container-fluid mx-3">
+<div class="col-md-8 d-flex justify-content-center">
+
+    <div class="card" style="width: 700px;">
+        <h5 class="text-center p-3">Owner List</h5>
+        <div class="card-body" style="padding: 30px;">
+
         <br>
         <h2>Item List</h2>
         <br>
@@ -75,7 +78,11 @@
         </div>
         
     </div>
-    </body>
+
+</div>
+
+</div>
+</div>
 
 
 {% endblock %}
