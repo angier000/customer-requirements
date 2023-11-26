@@ -10,7 +10,7 @@
 <div class="row">
 
 <div class="col-md-3">
-    <div class="card" style="width: 230px;">
+    <div class="card" style="width: 235px;">
         <div class="card-body bg-secondary bg-opacity-25">
             <form method="GET">
 
@@ -35,53 +35,68 @@
 <div class="col-md-8 d-flex justify-content-center">
 
     <div class="card" style="width: 700px;">
-        <h5 class="text-center p-3">Owner List</h5>
-        <div class="card-body" style="padding: 30px;">
+        <h2 class="text-center p-1">Item List</h2>
 
-        <br>
-        <h2>Item List</h2>
-        <br>
-
-    
-        {% if items %}
-            <div class="card-columns">
-                {% for item in items %}
-                    <div class="card me-4" style="max-width: 320px;">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 25px;">{{ item.name }}</h5>
-
-                            <div>
-                                {% for tag in item.tag.all %}
-                                    <p class="badge text-decoration-none bg-secondary">
-                                        {{tag.name}}
-                                    </p>
-                                {% endfor %}
-                            </div>
-
-
-                            <a href="{{ item.get_absolute_url }}" class="btn btn-primary me-2" style="font-size: 18px;" role="button">View</a>
-                            {% if request.user.is_authenticated %}
-                                <a href="{% url 'update_item' item.inventory.id item.id %}" class="btn btn-secondary m-2" style="font-size: 18px;" role="button">Update</a>
-                                <a href="{% url 'delete_item' item.inventory.id item.id %}" class="btn btn-danger m-2" style="font-size: 18px;" role="button">Delete</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% else %} 
-            <p style="font-size: 20px;">No items have been added to this inventory.</p>
-        {% endif %}
-        <div class="mx-0 my-2">
+        <div class="d-flex justify-content-center mx-0 my-2">
             {% if request.user.is_authenticated %}
                 <a class="btn btn-success" style="width: 320px; font-size: 18px" href="{% url 'create_item' request.user.owner.inventory.id %}" role="button">New Item</a>
             {% endif %}
         </div>
-        
+
+        <div class="card-body" style="padding: 30px;">
+
+
+
+        {% if items %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Item Name</th>
+                <th scope="col">Tags</th>
+                <th scope="col">View</th>
+                {% if request.user.is_authenticated %}
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                {% endif %}
+            </tr>
+            </thead>
+
+            <tbody>
+                {% for item in items %}
+                <tr>
+
+                <td>{{ item.name }}</td>
+                <td>
+                    {% for tag in item.tag.all %}
+                        <p class="badge text-decoration-none bg-secondary">
+                            {{tag.name}}
+                        </p>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary m-2" style="font-size: 18px;" role="button">View</a>
+                </td>
+
+                {% if request.user.is_authenticated %}
+                    <td><a href="{% url 'update_item' item.inventory.id item.id %}" class="btn btn-secondary m-2" style="font-size: 18px;" role="button">Update</a></td>
+                    <td><a href="{% url 'delete_item' item.inventory.id item.id %}" class="btn btn-danger m-2" style="font-size: 18px;" role="button">Delete</a></td>
+                {% endif %}
+            
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+                
+
+        {% else %} 
+            <p class="text-center" style="font-size: 20px;">No items have been added to this inventory.</p>
+        {% endif %}
+    
     </div>
 
 </div>
 
-</div>
 </div>
 
 

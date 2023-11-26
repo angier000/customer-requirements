@@ -13,6 +13,7 @@
                         <th scope="col"> </th>
                         <th scope="col">Name</th>
                         <th scope="col">Username</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Inventory</th>
                     </tr>
                     </thead>
@@ -22,6 +23,7 @@
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{ owner.name }}</td>
                         <td>{{ owner.user.username }}</td>
+                        <td>{{ owner.email }}</td>
                         <td><a href="{% url 'inventory-detail' pk=owner.inventory.id %}" class="btn btn-primary me-2" role="button">View</td>
                         </tr>
                         {% endfor %}
