@@ -3,25 +3,33 @@
 {% block content %}
 <div class="container min-vh-100 d-flex align-items-center justify-content-center">
 
-  <form method="post">
-    <h2>Registration</h2>
-    <br>
-    
-    {% csrf_token %}
-    <table>
-    {% for field in form %}
-    <tr>
+  <div class="card" style="max-width: 600;">
+    <h3 class="text-center p-3">Registration</h3>
+    <div class="card-body" style="padding: 60px;">
 
-      <td><p>{{field.label}}</p></td>
-      <td><p>{{field}}</p></td>
+      <form method="post">
+        <br>
+        
+        {% csrf_token %}
+        <table>
+        {% for field in form %}
+        <tr>
 
-    </tr>
-    {% endfor %}
-    </table>
+          <td><p>{{field.label}}</p></td>
+          <td><p class="border">{{field}}</p></td>
 
-    <p><input type="submit" name="Create User"></input></p>
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </tr>
+        {% endfor %}
+        </table>
+
+        <p><input type="submit" name="Create User"></input></p>
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        {{form.errors}}
+
+      </form>
     </div>
-  </form>
-  {{form.errors}}
+  </div>
+
+  
+</div>
 {% endblock %}

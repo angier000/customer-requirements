@@ -1,15 +1,37 @@
 {% extends 'inventory_app/base_template.html' %}
 
 {% block content %}
-{% if owner_list %}
-    <ul>
-        {% for owner in owner_list %}
-            <li>
-                <a href="{% url 'inventory-detail' pk=owner.inventory.id %}">{{ owner.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>There are no users registered.</p>
-{% endif %}
+<div class="container min-vh-100 d-flex justify-content-center">
+  <div class="card" style="margin: 50px; width: 1000px;">
+    <h5 class="text-center p-3">Owner List</h5>
+    <div class="card-body" style="padding: 30px;">
+        {% if owner_list %}  
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"> </th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Inventory</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for owner in owner_list %}
+                        <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ owner.name }}</td>
+                        <td>{{ owner.user.username }}</td>
+                        <td><a href="{% url 'inventory-detail' pk=owner.inventory.id %}" class="btn btn-primary me-2" role="button">View</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+        {% else %}
+            <p>There are no users registered.</p>
+        {% endif %}
+</div>
+</div>
+</div>
 {% endblock %}
