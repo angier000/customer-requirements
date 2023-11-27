@@ -1,12 +1,33 @@
 {% extends 'inventory_app/base_template.html' %}
 
 {% block content %}
-<h6>{{user}}</h6>
+
+<div class="container min-vh-100 d-flex justify-content-center">
+    <div class="card w-50" style="margin: 50px;">
+      <h5 class="text-center p-3">Profile</h5>
+      <div class="card-body" style="padding: 30px;">
+
+        <br>
+        <p><strong>Name: </strong>{{owner.name}}</p>
+        <p><strong>Username: </strong>{{owner.user.username}}</p>
+        <p><strong>Email: </strong>{{owner.email}}</p>
+        <p><strong>Homeowner's insurance provider: </strong>
+            {% if owner.insurance %}
+                {{owner.insurance}} 
+            {% else %}
+                None provided
+            {% endif %}
+            
+        </p>
+
 <br>
-<p>Name: {{owner.name}}</p>
-<p>Email: {{owner.email}}</p>
-<p>Insurance: {{owner.insurance}}</p>
-<br>
-<p>Inventory: {{inventory.id}}</P>
+
+<div class="d-flex justify-content-center mx-0 my-2">
+    <a class="btn btn-secondary" style="width: 320px; font-size: 18px" href="{% url 'inventory-detail' owner.inventory.id %}" role="button">Go to your Inventory</a>
+</div>
+
+</div>
+</div>
+</div>
 
 {% endblock %}
