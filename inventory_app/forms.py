@@ -7,6 +7,8 @@ from django import forms
 
 #create class for item form
 class ItemForm(ModelForm):
+    price = forms.CharField(max_length=200, label='price/estimate')
+
     class Meta:
         model = Item
         fields =('name', 'price', 'serial_number', 'description', 'image')
@@ -30,7 +32,7 @@ class CreateUserForm(UserCreationForm):
         ('LibertyMutual', 'Liberty Mutual'),
         ('Travelers', 'Travelers'),
     ]
-    insurance = forms.ChoiceField(choices=INSURANCE_CHOICES, required=False)
+    insurance = forms.ChoiceField(choices=INSURANCE_CHOICES, required=False, label='Insurance (optional)')
 
     class Meta:
         model = User

@@ -2,36 +2,50 @@
 
 
 {% block content %}
-<body class="bg-light">
-<div class="container-fluid mx-3 my-3 bg-light" style="max-width: 400px; font-size: 18px">
-
-    <p><strong>Name: </strong> {{ item.name }}</p>
-    <p><strong>Price: </strong> ${{ item.price }}</p>
-
-    {% if item.serial_number %}
-        <p><strong>Serial Number: </strong> {{ item.serial_number }}</p>
-    {% endif %}
-
-    {% if item.description %}
-        <p><strong>Description: </strong> {{ item.description }}</p>
-    {% endif %}
-
-    {% if item.image %}
-        <img src="{{ item.image.url }}" width=300>
-    {% endif %}
-
-    <h2>Tags:</h2>
-    <ul>
-        {% for tag in item.tag.all %}
-            <li>{{ tag.name }}</li>
-        {% endfor %}
-    </ul>
 
 
-    <br>
-    <br>
-    <a class="btn btn-secondary" style="width: 320px; font-size: 18px" href="{% url 'inventory-detail' item.inventory.id %}" role="button">Back To Inventory</a>
 
+<div class="container min-vh-100 d-flex align-items-center justify-content-center" style="font-size: 18px;">
+    <div class="card" style="width: 400px;">
+        <div class="card-body" style="padding: 20px;">
+
+            <h4 class="text-center"><strong>{{ item.name }}</strong></h4>
+            <br>
+
+            <p><strong>Price: </strong> ${{ item.price }}</p>
+
+            {% if item.serial_number %}
+                <p><strong>Serial Number: </strong> {{ item.serial_number }}</p>
+            {% endif %}
+
+            {% if item.description %}
+                <p><strong>Description: </strong> {{ item.description }}</p>
+            {% endif %}
+
+            {% if item.image %}
+                <img src="{{ item.image.url }}" width=300>
+            {% endif %}
+            <br>
+            <br>
+
+            <p><strong>Tags:</strong></p>
+            <ul>
+                {% for tag in item.tag.all %}
+                    <p class="badge text-decoration-none" style="background-color: #9164A5;">
+                        {{tag.name}}
+                    </p>
+                {% endfor %}
+            </ul>
+
+
+            <br>
+            <br>
+            <div class="d-flex justify-content-center mx-0 my-2">
+                <a class="btn btn-secondary" style="width: 320px; font-size: 18px" href="{% url 'inventory-detail' item.inventory.id %}" role="button">Back To Inventory</a>
+            </div>
+
+        </div>
+    </div>
 </div>
-</body>
+
 {% endblock %}

@@ -1,19 +1,30 @@
 {% extends 'inventory_app/base_template.html' %}
 
 {% block content %}
-<body class="bg-light">
-<div class="container-fluid my-2" style="font-size: 18px;">
 
-    <form action="" method="POST" enctype="multipart/form-data">
 
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <br>
-        <input type="submit" name="Submit">
-    </form>
-</done>
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center" style="font-size: 18px;">
+
+    <div class="card" style="width: 850px;">
+        <h3 class="text-center p-3">Create Item</h3>
+        <div class="card-body" style="padding: 60px;">
+
+            <form action="" method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <br>
+                <input type="submit" name="Submit">
+            </form>
+
+
+        </div>
+    </div>
 </div>
-</body>
+
+
+
 {% endblock %}
