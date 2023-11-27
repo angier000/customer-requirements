@@ -36,7 +36,7 @@ class CreateUserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'name', 'insurance', 'password1', 'password2']
+        fields = ['username', 'name', 'email', 'insurance', 'password1', 'password2']
 
 class OwnerForm(ModelForm):
     class Meta:

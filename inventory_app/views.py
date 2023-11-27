@@ -66,7 +66,7 @@ def createItem(request, inventory_id):
             # Redirect back to the item list page
             return redirect('inventory-detail', inventory_id)
     
-    context = {'form': form, 'inventory':inventory}
+    context = {'form': form, 'inventory':inventory, 'action_type':'create'}
     return render(request, 'inventory_app/item_form.html', context)
 
 @login_required(login_url='login') # if user not authentucated, refirect to login page
@@ -100,7 +100,7 @@ def updateItem(request, inventory_id, item_id):
             # Redirect back to the item list page
             return redirect('inventory-detail', inventory_id)
     
-    context = {'form': form}
+    context = {'form': form, 'action_type':'update'}
     return render(request, 'inventory_app/item_form.html', context)
 
 @login_required(login_url='login') # if user not authentucated, refirect to login page

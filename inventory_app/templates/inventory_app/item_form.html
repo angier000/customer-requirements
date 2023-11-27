@@ -7,7 +7,12 @@
 <div class="container min-vh-100 d-flex align-items-center justify-content-center" style="font-size: 18px;">
 
     <div class="card" style="width: 850px;">
-        <h3 class="text-center p-3">Create Item</h3>
+        {% if action_type == 'create' %}
+            <h3 class="text-center p-3">Create Item</h3>
+        {% elif action_type == 'update' %}
+            <h3 class="text-center p-3">Update Item</h3>
+        {% endif %}
+        
         <div class="card-body" style="padding: 60px;">
 
             <form action="" method="POST" enctype="multipart/form-data">
