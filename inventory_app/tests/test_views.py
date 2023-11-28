@@ -72,7 +72,6 @@ class TestViews(TestCase):
 
 
 
-
     def test_create_item_unauthenticated_user_get(self):
         self.client.logout() # log out user
         # Attempt to access the view without logging in
