@@ -24,15 +24,15 @@ class TestViews(TestCase):
         #self.item = Item.objects.create(name='Test Item', price=10.00)
 
     def tearDown(self):
-        print('testview test: ', self.owner_user.first_name)
+
         self.owner_user.delete()
 
     def test_create_item_valid_form(self):
         self.client.login(username='testuser', password='testpassword') # log in user
         response = self.client.post(self.url, {'name': 'Test Item', 'price': 10.00})
-        print('response: ', response)
+
         self.assertEqual(response.status_code, 302)
-        print('debug: ', response.url)
+
 
         # Check that the item was added to the database
         self.assertTrue(Item.objects.filter(name='Test Item').exists())
@@ -70,7 +70,7 @@ class TestViews(TestCase):
 
 
 
-# reverse('inventory-detail', args=[str(self.id)])
+
 
 
     def test_create_item_unauthenticated_user_get(self):

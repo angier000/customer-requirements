@@ -58,10 +58,10 @@ class Hosttest(LiveServerTestCase):
 
 
     def test_login_logout(self):
-        print('TEST In test_login_logout unction')
+
         server_url = self.get_server_url()
-        print('TEST server_url = ', server_url)
-        print('User count before creation:', User.objects.count())
+
+
         #print('Selenium Test Database Path:', settings.DATABASES['default']['NAME'])
 
         # register user
@@ -90,8 +90,7 @@ class Hosttest(LiveServerTestCase):
 
         # go to login page
         self.driver.get(server_url  + '/accounts/login/')
-        print("Current URL:", self.driver.current_url)
-        print("TEST URL:", server_url + '/accounts/login/')
+
 
         # define username and password
         user_name = self.driver.find_element(By.NAME, 'username')
@@ -140,4 +139,4 @@ class Hosttest(LiveServerTestCase):
             test_user = User.objects.get(username='usernametest')
             print('testuser: ', test_user)
         except User.DoesNotExist:
-            print('User not found')
+            print(' ')
